@@ -47,7 +47,6 @@ $response = http\processRequest::createResponse();
 //it shouldn't be too hard to namespace and autoload
 //namespaces are really needed because your collection and controller classes for todos and accounts are called the same thing.
 
-
 //IMPORTANT:  YOUR ACTIVE RECORD collection CLASSES  (task/account) WILL CONFLICT WITH THE CONTROLER CLASS HERE.
 //You can use namespaces or rename the controller classes, which will change your url parameter for page
 
@@ -56,7 +55,6 @@ $response = http\processRequest::createResponse();
 //Examples:
 
 //  index.php?page=todos&action=show specifies the todos collection class and the show method/function
-
 
 //  GET requests to show the  form for new todos should go to index.php?page=todos&action=create and show a form for a new todoItem
 //  POST requests to create todos should go to index.php?page=todos&action=store and would be inserted into the database
@@ -71,8 +69,5 @@ $response = http\processRequest::createResponse();
 //for the todos list page you need to make a table that has links to each item.
 //  Like:  index.php?page=todos&action=show&id=1  this would show the to-do item with a link to the edit form.
 //  you could put your delete on the to_do item view or the edit form, the above still applies.
-
-
-
 
 ?>
