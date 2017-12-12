@@ -42,6 +42,75 @@ class routes
         $route->method = 'create';
         $routes[] = $route;
 
+
+        //the index.php route for POST
+        //This is an example of the post for new user
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'signup';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'signup';
+        $routes[] = $route;
+        //registering new user
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'register';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'register';
+        $routes[] = $route;
+
+         //GET METHOD index.php?page=accounts&action=all
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'all';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'all';
+        $routes[] = $route;
+        //GET METHOD index.php?page=accounts&action=show
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'show';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'show';
+        $routes[] = $route;
+        //This goes in the login form action method
+        //GET METHOD index.php?page=accounts&action=login
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'login';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'login';
+        $routes[] = $route;
+        //GET METHOD index.php?page=accounts&action=logout
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'logout';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'logout';
+        $routes[] = $route;
+        //GET METHOD index.php?page=accounts&action=myProf
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'myProf';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'show_profile';
+        $routes[] = $route;
+        //GET METHOD index.php?page=accounts&action=update
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'update';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'update_profile';
+        $routes[] = $route;
+
         //This is an examole of the post for tasks to show a task
         //GET METHOD index.php?page=tasks&action=show
         $route = new route();
@@ -63,37 +132,16 @@ class routes
         $route->controller = 'tasksController';
         $route->method = 'all';
         $routes[] = $route;
-        //GET METHOD index.php?page=accounts&action=all
-//https://web.njit.edu/~kwilliam/mvc/index.php?page=accounts&action=all
+        //GET METHOD index.php?page=accounts&action=oneUser
 
-        $route = new route();
+         $route = new route();
         $route->http_method = 'GET';
-        $route->action = 'all';
-        $route->page = 'accounts';
-        $route->controller = 'accountsController';
-        $route->method = 'all';
-        $routes[] = $route;
-        //GET METHOD index.php?page=accounts&action=show
-
-        $route = new route();
-        $route->http_method = 'GET';
-        $route->action = 'show';
-        $route->page = 'accounts';
-        $route->controller = 'accountsController';
-        $route->method = 'show';
+        $route->action = 'oneUser';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'oneUser';
         $routes[] = $route;
 
-        //This goes in the login form action method
-        //GET METHOD index.php?page=accounts&action=login
-
-
-        $route = new route();
-        $route->http_method = 'POST';
-        $route->action = 'login';
-        $route->page = 'accounts';
-        $route->controller = 'accountsController';
-        $route->method = 'login';
-        $routes[] = $route;
 
         //YOU WILL NEED TO ADD MORE ROUTES
 
@@ -105,60 +153,42 @@ class routes
         $route->method = 'delete';
         $routes[] = $route;
 
-
+          //edit a task function
         $route = new route();
         $route->http_method = 'POST';
-        $route->action = 'delete';
-        $route->page = 'accounts';
-        $route->controller = 'accountsController';
-        $route->method = 'delete';
-        $routes[] = $route;
-
-        $route = new route();
-        $route->http_method = 'GET';
         $route->action = 'edit';
-        $route->page = 'accounts';
-        $route->controller = 'accountsController';
-        $route->method = 'edit';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'editTask';
         $routes[] = $route;
-
+        //update tasks
         $route = new route();
         $route->http_method = 'POST';
-        $route->action = 'save';
-        $route->page = 'accounts';
-        $route->controller = 'accountsController';
-        $route->method = 'save';
+        $route->action = 'update';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'update';
         $routes[] = $route;
-        //this is the route for the reg form
-        $route = new route();
-        $route->http_method = 'GET';
-        $route->action = 'register';
-        $route->page = 'accounts';
-        $route->controller = 'accountsController';
-        $route->method = 'register';
-        $routes[] = $route;
-        //this handles the reg post to create the user
+        //add tasks page
         $route = new route();
         $route->http_method = 'POST';
-        $route->action = 'register';
-        $route->page = 'accounts';
-        $route->controller = 'accountsController';
-        $route->method = 'store';
+        $route->action = 'create';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'create';
         $routes[] = $route;
-
-
+        //add tasks function
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'addTask';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'addTask';
+        $routes[] = $route;
         return $routes;
     }
-
-    public static function create($http_method,$action,$page,$controller,$method) {
-        $route = new route();
-        $route->http_method = $http_method;
-        $route->action = $action;
-        $route->page = $page;
-        $route->controller = $controller;
-        $route->method = $method;
-    }
 }
+
 
 //this is the route prototype object  you would make a factory to return this
 
