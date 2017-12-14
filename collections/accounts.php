@@ -8,23 +8,21 @@ class accounts extends \database\collection
     //Don't forget to return the object see findOne in the collection class
 
 
-    public static function findUserbyEmail($email)
+    public static function findUserbyEmail($login)
     {
-
-            $tableName = get_called_class();
-            $sql = 'SELECT * FROM ' . $tableName . ' WHERE email = ?';
-
-         //grab the only record for find one and return as an object
-            $recordsSet = self::getResults($sql, $email);
-
-            if (is_null($recordsSet)) {
-                return FALSE;
-            } else {
-                return $recordsSet[0];
-            }
-
-
-
+     $tableName = get_called_class();
+        $sql = 'SELECT * FROM ' .$tableName . ' WHERE email ="' . $login.'"';
+        //print_r($sql);
+        //grab the only record for find one and return as an object
+        $recordsSet = self::getResults($sql);
+        if (is_null($recordsSet)) {
+            echo "False";
+            return FALSE;
+        } else {
+            echo "True";
+            return $recordsSet[0];
+        }
+        //return $recordsSet[0];
     }
 }
-
+?>
