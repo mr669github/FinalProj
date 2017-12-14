@@ -14,14 +14,10 @@ class todos extends database\collection
 
 
         //grab the only record for find one and return as an object
-        $recordsSet = self::getResults($sql, $userid);
+        $recordsSet = self::getResults($sql);
 
-        if (is_null($recordsSet)) {
-            return FALSE;
-        } else {
             return $recordsSet;
         }
     }
-}
 
 ?>
