@@ -1,59 +1,47 @@
-<?php include 'headerPage.php' 
-?>
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>The HTML5 Herald</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+
+</head>
+
+<body>
 
 <?php
 //this is how you print something  $data contains the record that was selected on the table.
-//print_r($data);
-session_start();
+print utility\htmlTable::generateTableFromOneRecord($data);
 ?>
-<div class="content-inner">
-    //Page Header-->
-    <div class="content-inner">
-        //Page Header-->
-        <header class="page-header">
-            <div class="container-fluid">
-                <h2 class="no-margin-bottom">Edit Task</h2>
-            </div>
-        </header>
-        //Breadcrumb-->
-        <div class="breadcrumb-holder container-fluid">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.php?page=tasks&action=allOneUser&id=<?php echo $_SESSION["userID"] ?>"">Home</a></li>
-                <li class="breadcrumb-item active">Forms</li>
-            </ul>
-        </div>
-        //Dashboard Counts Section-->
-        //Dashboard Header Section    -->
-        <section class="dashboard-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <?php
-                    print utility\htmlTable::generateTableForOneTodo($data);
-                    ?>
-                    <form action="index.php?page=tasks&action=edit&id=<?php echo $data->id; ?> " method="post" id="form1" style="float:left;">
-                        <div class="col-lg-10"><button class="btn btn-primary text-center" type="submit" form="form1" value="edit">Edit</button></div>
-                    </form>
-                    <form action="index.php?page=tasks&action=delete&id=<?php echo $data->id; ?> " method="post" id="form2" style="float:right;">
-                        <div class="" ><button class="btn btn-primary" type="submit" form="form2" value="delete">Delete</button><a href="index.php?page=tasks&action=allOneUser&id=<?php echo $_SESSION["userID"] ?>">Cancel</a></div>
-                    </form>
-                </div>
-            </div>
-    </div>
-    <footer class="main-footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <p>Your company &copy; 2017-2019</p>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
-</div>
-</div>
+<style>
+    tab{
+        float: right;
+        margin-right: 63.0em;
+    }
+</style>
+<form action="index.php?page=tasks&action=save&id=<?php echo $data->id; ?>" method="post">
+
+    Owneremail: <tab><input type="email" name="owneremail" value="<?php echo $data->owneremail; ?>"></tab><br><br>
+    Ownerid:    <tab><input type="number" name="ownerid" value="<?php echo $data->ownerid; ?>"></tab><br><br>
+    Createdate: <tab><input type="text" name="createddate" value="<?php echo $data->createddate; ?>"></tab><br><br>
+    Duedate:    <tab><input type="text" name="duedate" value="<?php echo $data->duedate; ?>"></tab><br><br>
+    Message:    <tab><input type="text" name="message" value="<?php echo $data->message; ?>"></tab><br><br>
+    Isdone:     <tab><input type="text" name="isdone" value="<?php echo $data->isdone; ?>"></tab><br><br>
+    <input type="submit" value="Submit form">
+</form>
+
+<form action="index.php?page=tasks&action=delete&id=<?php echo $data->id; ?> " method="post" id="form1">
+    <button type="submit" form="form1" value="delete">Delete</button>
+</form>
+
+
+
 
 <script src="js/scripts.js"></script>
 </body>
