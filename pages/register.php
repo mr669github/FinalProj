@@ -19,16 +19,15 @@
 
 
 <form action="index.php?page=accounts&action=register" method="post">
-    First name: <input type="text" name="fname"><br>
-    Last name: <input type="text" name="lname"><br>
-    Email: <input type="text" name="email"><br>
-    Phone: <input type="text" name="phone"><br>
-    Birthday: <input type="text" name="birthday"><br>
-    Gender: <input type="text" name="gender"><br>
-    Password: <input type="password" name="password"><br>
+    <em><b>First name:</b></em> <input type="text" name="fname"><br><br>
+    <em><b>Last name:</b></em> <input type="text" name="lname"><br><br>
+    <em><b>Email:</b></em> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="email"><br><br>
+    <em><b>Phone:</b></em> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="phone"><br><br>
+    <em><b>Birthday:</b></em> &nbsp&nbsp&nbsp&nbsp<input type="text" name="birthday"><br><br>
+    <em><b>Gender:</b></em> &nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="gender"><br><br>
+    <em><b>Password:</b></em> &nbsp&nbsp&nbsp<input type="password" name="password"><br><br>
     <input type="submit" value="Submit form">
 </form>
-
 
 <script src="js/scripts.js"></script>
 </body>
