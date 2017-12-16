@@ -5,71 +5,44 @@
     <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>FINAL WSD PROJECT! </title>
+     <meta name="description" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    //Bootstrap CSS
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fontastic.css">
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Itim:300,400,700">
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
-    <link rel="stylesheet" href="css/custom.css">
-    <link rel="shortcut icon" href="favicon.png">
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-  </head>
-  <body>
-    <div class="page login-page">
-      <div class="container d-flex align-items-center">
-        <div class="form-holder has-shadow">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="info d-flex align-items-center">
-                <div class="content">
-                  <div class="logo">
-                    <h1> FINAL WSD PROJECT</h1>
-                  </div>
-                  <p>Welcome!</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-lg-6 bg-white">
-              <div class="form d-flex align-items-center">
-                <div class="content">
-                  <form id="login-form" action="index.php?page=accounts&action=login" method="post">
-                    <div class="form-group">
-                      <input id="login-username" type="text" name="login" required="" class="input-material">
-                      <label for="login-username" class="label-material">Email</label>
-                    </div>
-                    <div class="form-group">
-                      <input id="login-password" type="password" name="psw" required="" class="input-material">
-                      <label for="login-password" class="label-material">Password</label>
-                    </div>
-                    <p id="login" class="login"><input type="submit" name="commit" value="Login"></p>
-                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-                  </form>
+     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
-                  <form id="login-form" action="index.php?page=accounts&action=signup" method="post">
-                    <div><p class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><p id="login" class="signup"><input type="submit" name="commit" value="Signup"></p></div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-      </div>
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+<h1>
+    <?php
+    //this how to print some data;
+    echo $data['site_name'];
+    ?> </h1>
+
+<h1><a href="index.php?page=accounts&action=all">Show All Accounts</a></h1>
+<h1><a href="index.php?page=tasks&action=all">Show All Tasks</a></h1>
+
+<form action="index.php?page=accounts&action=login" method="POST">
+
+    <div class="container">
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="email" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit">Login</button>
     </div>
 
-    <!-- Javascript files-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="js/front.js"></script>
-  </body>
+
+</form>
+<h1><a href="index.php?page=accounts&action=register">Register</a></h1>
+
+
+<script src="js/scripts.js"></script>
+</body>
 </html>
