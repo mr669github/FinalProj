@@ -1,48 +1,55 @@
-<!doctype html>
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" >
 <head>
-    <meta charset="utf-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FINAL WSD PROJECT! </title>
-     <meta name="description" content="">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <meta charset="UTF-8">
+    <title>Login Form</title>
 
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+    <link rel="stylesheet" href="pages/assets/css/style.css">
+
+
 </head>
 
 <body>
 
+<div class="container">
+    <div class="info">
 
-<h1>
-    <?php
-    //this how to print some data;
-    echo $data['site_name'];
-    ?> </h1>
-
-<h1><a href="index.php?page=accounts&action=all">Show All Accounts</a></h1>
-<h1><a href="index.php?page=tasks&action=all">Show All Tasks</a></h1>
-
-<form action="index.php?page=accounts&action=login" method="POST">
-
-    <div class="container">
-        <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="email" required>
-
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-
-        <button type="submit">Login</button>
     </div>
+</div>
+<div class="form">
+    <div class="thumbnail"><center><img src= "https://upload.wikimedia.org/wikipedia/commons/c/cf/Logo_of_New_Jersey_Institute_of_Technology.png"></center></div>
+    <form class="register-form" action="index.php?page=accounts&action=store" method="POST">
+        <input type="text" name="fname" placeholder="firstname"/>
+        <input type="text" name="lname" placeholder="lastname"/>
+        <input type="text" name="email" placeholder="email address"/>
+        <input type="text" name="phone" placeholder="Phone Number"/>
+        <input type="text" name="birthday" placeholder="Birthday"/>
+        <input type="text" name="gender" placeholder="Gender"/>
+
+        <input type="password" name="password"placeholder="Password"/>
+
+        <button>create</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form" action="index.php?page=accounts&action=login" method="POST">
+        <input type="text" name="email" placeholder="email address"/>
+        <input type="password" name="password"placeholder="Password"/>
+        <button>login</button>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+</div>
 
 
-</form>
-<h1><a href="index.php?page=accounts&action=register">Register</a></h1>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-<script src="js/scripts.js"></script>
+<script  src="pages/assets/js/index.js"></script>
+
 </body>
 </html>
