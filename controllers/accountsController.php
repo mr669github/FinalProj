@@ -41,12 +41,13 @@ class accountsController extends http\controller
         self::getTemplate('new_user');
     }
 
-     public static function register()
+     public static function store()
 {
     //https://www.sitepoint.com/why-you-should-use-bcrypt-to-hash-stored-passwords/
     //USE THE ABOVE TO SEE HOW TO USE Bcrypt
-    $user = accounts::findUserbyUsername($_REQUEST['email']);
+    $user = accounts::findUserbyEmail($_POST['email']);
     if ($user == FALSE) {
+        session_start();
         $record = new account();
         $record->email = $_POST['email'];
         $record->fname = $_POST['fname'];
@@ -58,67 +59,21 @@ class accountsController extends http\controller
         $record->password = $record->setPassword($_POST['password']);
         //print_r($record);
         $record->save();
-        header('Location: index.php');
+        header('header("Location:https://web.njit.edu/~mr669/mvc/index.php?page=tasks&action=all");');
     }
     else{
         echo 'Sorry! This email is already registered.Please try with new one!';
     }
 }
     //this is the function to save the user the user profile
-    public static function store()
+     public static function edit()
     {
-        print_r($_POST);
-    }
-    public static function update_profile()
-    {
-        $records = accounts::findOne($_REQUEST['id']);
-        $record = new account();
-        $record->id=$records->id;
-        $record->email=$_POST['email'];
-        $record->fname=$_POST['fname'];
-        $record->lname=$_POST['lname'];
-        $record->phone=$_POST['phone'];
-        $record->birthday=$_POST['birthday'];
-        $record->gender=$_POST['gender'];
-        $record->save();
-        session_start();
-        header('Location: index.php?page=accounts&action=showProf');
-    }
-    public static function edit_profile()
-    {
-        session_start();
-        $record = accounts::findOne($_SESSION['userID']);
+        $record = accounts::findOne($_REQUEST['id']);
+
         self::getTemplate('edit_account', $record);
+
     }
-    public static function show_profile()
-    {
-        session_start();
-        $record = accounts::findOne($_SESSION['userID']);
-        self::getTemplate('show_account', $record);
-    }
-    public static function editPass()
-    {
-        session_start();
-        $record = accounts::findOne($_SESSION['userID']);
-        self::getTemplate('password_change', $record);
-    }
-    public static function updatePass()
-    {
-        $records = accounts::findOne($_REQUEST['id']);
-        if($records->checkPassword($_POST['currentPass']) == TRUE){
-            if($_POST['newPass1']==$_POST['newPass2']){
-                $record = new account();
-                $record->id=$records->id;
-                $record->password = $record->setPassword($_POST['newPass1']);
-                $record->save();
-                header('Location: index.php?page=accounts&action=showProf');
-            }else{
-                echo 'Passwords do not match.';
-            }
-        }else{
-            echo 'Wrong password entered.';
-        }
-    }
+
     //this is to login, here is where you find the account and allow login or deny.
     public static function login()
     {
@@ -128,31 +83,92 @@ class accountsController extends http\controller
         //you might want to add something that handles if the password is invalid, you could add a page template and direct to that
         //after you login you can use the header function to forward the user to a page that displays their tasks.
         //        $record = accounts::findUser($_POST['uname']);
-        $record = new account();
-        $record = accounts::findUserbyUsername($_POST['login']);
-        //$checkpsw = accounts::checkPassword($_POST['psw'],$record->password);
-        //print_r($record);
-        //echo '1';
-        if ($record == FALSE) {
-            //header('Location: index.php');
-            print_r("<h1>'User Not Found. Please Enter Correctly'</h1>");
-        } else {
-            if($record->checkPassword($_POST['psw']) == TRUE) {
-                //echo 'login';
-                session_start();
-                $_SESSION["userID"] = $record->id;
-                $_SESSION["userEmail"] = $record->email;
-                print_r($_SESSION);
-                header('Location: index.php?page=tasks&action=allOneUser&id='.$record->id);
-            } else {
-                //header('Location: index.php');
-                print_r("<h1>'Sorry! Wrong Password!'</h1>");
-            }
+
+          //  print_r($_REQUEST['email']);
+
+        $user = accounts::findUserbyEmail($_REQUEST['email']);
+
+        if($user==FALSE)
+        {
+            $error = 'user not found';
+            self::getTemplate('error', $error);
+
         }
+        else
+        {
+
+          if($user->checkPassword($_POST['password'])== TRUE)
+             {
+               // echo 'login';
+
+                session_start();
+
+                $_SESSION["userID"] = $user->id;
+                $_SESSION["email"] = $user->email;
+
+
+                 header("location: https://web.njit.edu/~mr669/mvc/index.php?page=tasks&action=all");
+
+
+             }
+
+             else
+             {
+
+                 $error = 'password does not match';
+                 self::getTemplate('error', $error);
+             }
+
+               }
+
     }
-    public static function logout()
+
+    public static function delete()
     {
-        session_destroy();
-        header('Location: index.php');
+      $record = accounts::findOne($_REQUEST['id']);
+      $record->delete();
+      header("location: https://web.njit.edu/~mr669/mvc/index.php");
     }
+
+    static  public function test()
+    {
+        if ($_POST['btSubmit']=='Edit') {
+
+        accountsController::edit();
+
+        }
+         elseif ($_POST['btSubmit']=='Delete') {
+
+        accountsController::delete();
+        }
+
+    }
+
+    static public function update()
+    {
+        session_start();
+        $record = new account();
+        $record->email = $_POST['email'];
+        $record->fname = $_POST['fname'];
+        $record->lname = $_POST['lname'];
+        $record->phone = $_POST['phone'];
+        $record->birthday = $_POST['birthday'];
+        $record->gender = $_POST['gender'];
+        $record->password = $_POST['password'];
+        $record->id = $_SESSION['userID'];
+        $record->save();
+
+        header("location: https://web.njit.edu/~mr669/mvc/index.php?page=tasks&action=all");
+
+    }
+
+    static public function profile()
+    {
+        session_start();
+        $record = accounts::findUserbyEmail($_SESSION['email']);
+
+        self::getTemplate('edit_account', $record);
+
+    }
+
 }
