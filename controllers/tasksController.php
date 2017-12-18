@@ -50,7 +50,12 @@ class tasksController extends http\controller
     //this is the function to view edit record form
     public static function edit()
     {
+        session_start();
         $record = todos::findOne($_REQUEST['id']);
+
+        $result1 = get_object_vars($record);
+        unset($result1['oweneremail']);
+        unset($result1['ownerid']);
 
         self::getTemplate('edit_task', $record);
 
@@ -59,22 +64,29 @@ class tasksController extends http\controller
     //this would be for the post for sending the task edit form
     public static function store()
     {
-
-
-        $record = todos::findOne($_REQUEST['id']);
-        $record->body = $_REQUEST['body'];
+        session_start();
+        $record = new todo();
+        $record->createddate = $_POST['createddate'];
+        $record->duedate = $_POST['duedate'];
+        $record->message = $_POST['message'];
+        $record->isdone = $_POST['isdone'];
+        $record->ownerid = $_SESSION['userID'];
+        $record->owneremail = $_SESSION['email'];
         $record->save();
-        print_r($_POST);
-
+        header("Location: https://web.njit.edu/~mr669/mvc/index.php?page=tasks&action=all");
     }
 
-    public static function save() {
-        session_start();
-        $task = new todo();
+    static  public function test()
+    {
+        if ($_POST['btSubmit']=='Edit') {
 
-        $task->body = $_POST['body'];
-        $task->ownerid = $_SESSION['userID'];
-        $task->save();
+            tasksController::edit();
+
+        }
+        elseif ($_POST['btSubmit']=='Delete') {
+
+            tasksController::delete();
+        }
 
     }
 
@@ -84,7 +96,29 @@ class tasksController extends http\controller
     {
         $record = todos::findOne($_REQUEST['id']);
         $record->delete();
-        print_r($_POST);
+        header("Location: https://web.njit.edu/~mr669/mvc/index.php?page=tasks&action=all");
+       // print_r($_POST);
+
+    }
+    static public function update()
+    {
+        $record = new todo();
+        $record->createddate = $_POST['createddate'];
+        $record->duedate = $_POST['duedate'];
+        $record->message = $_POST['message'];
+        $record->isdone = $_POST['isdone'];
+        $record->id = $_REQUEST['id'];
+        $record->save();
+        header("Location: https://web.njit.edu/~mr669/mvc/index.php?page=tasks&action=all");
+    }
+
+    static public function logout()
+    {
+        // remove session variables
+        session_unset();
+        // destroys the session
+        session_destroy();
+        header("Location:  https://web.njit.edu/~mr669/mvc/");
 
     }
 
